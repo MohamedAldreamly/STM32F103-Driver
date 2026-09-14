@@ -1,50 +1,37 @@
 /*
- *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    STD_MACROS.h || BIT_MATH.h    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    BIT_MATH.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
- * Author  : Mohamed Aldremly
- * Date    : 5/6/2026
- *  Layer  : LIB
- *
+ *  Author  : Mohamed Aldreamly
+ *  Date    : MAY, 7 2026
+ *  Vertion : V02
+ *	Update	: SEP, 14 2026
+ *  Layer   : LIB
  *
  */ 
  
 #ifndef BIT_MATH_H_
 #define BIT_MATH_H_
 
-#define REGISTER_SIZE 8
-#define SET_BIT(reg,bit)    reg|=(1<<bit)
-#define CLR_BIT(reg,bit)    reg&=(~(1<<bit))
-#define TOG_BIT(reg,bit)    reg^=(1<<bit)
-#define GET_BIT(reg,bit)    (reg&(1<<bit))>>bit
-#define IS_BIT_SET(reg,bit)  (reg&(1<<bit))>>bit
-#define IS_BIT_CLR(reg,bit)  !((reg&(1<<bit))>>bit)
-#define ROR(reg,num)         reg=(reg<<(REGISTER_SIZE-num))|(reg>>(num))
-#define ROL(reg,num)        reg= (reg>>(REGISTER_SIZE-num))|(reg<<(num))
+#define SET_BIT(REG, POS) ((REG) |= (1UL << (POS)))
+#define CLR_BIT(REG, POS) ((REG) &= ~(1UL << (POS)))
+#define TOG_BIT(REG, POS) ((REG) ^= (1UL << (POS)))
+#define GET_BIT(REG, POS) (((REG) >> (POS)) & 1UL)
 
-// set position from 0 (0,1,2,3, .....)
+/*===================================================*/
 
-#define CLR_2BIT_R(reg,bit)    reg&=(~(0b11<<bit*2))
-#define SET_2BIT_VALUE_R(reg,bit,value)    reg|=  (((value) & 0b11U) << (bit*2))
+#define SET_2BIT_INDEX(REG, INDEX, VALUE) ((REG) |= (((VALUE) & 0x3U) << ((INDEX) * 2U)))
 
-#define CLR_4BIT_R(reg,bit)    reg&=(~(0b1111<<(bit*4)))
-#define SET_4BIT_VALUE_R(reg,bit,value)    reg|=  (((value) & 0b1111U) << (bit*4))
+#define CLR_2BIT_INDEX(REG, INDEX) ((REG) &= ~(0x3U << ((INDEX) * 2U)))
 
-#define CLR_3BIT_R(reg,bit)    reg&=(~(0b111<<(bit*3)))
-#define SET_3BIT_VALUE_R(reg,bit,value)    reg |=  (((value) & 0b111U) << (bit*3))
+#define GET_2BIT_INDEX(REG, INDEX) (((REG) >> ((INDEX) * 2U)) & 0x3U)
 
-// set the real postion 
-#define CLR_3BIT(reg,bit)              ((reg) &= ~(0b111U << (bit)))
-#define SET_3BIT_VALUE(reg,bit,value)  ((reg) |= (((value) & 0b111U) << (bit)))
+/*===================================================*/
 
-#define CLR_2BIT(reg,bit)              ((reg) &= ~(0b11U << (bit)))
-#define SET_2BIT_VALUE(reg,bit,value)  ((reg) |= (((value) & 0b11U) << (bit)))
+#define SET_FIELD(REG, POS, VALUE) ((REG) |= ((VALUE) << (POS)))
+			 
+#define CLR_FIELD(REG, POS, WIDTH) ((REG) &= ~((((1U << (WIDTH)) - 1U)) << (POS)))
 
-#define CLR_4BIT(reg,bit)              ((reg) &= ~(0b1111U << (bit)))
-#define SET_4BIT_VALUE(reg,bit,value)  ((reg) |= (((value) & 0b1111U) << (bit)))
-
-
-#define CLR_MASK(REG, MASK)      ((REG) &= ~(MASK))
-#define SET_MASK(REG, MASK)      ((REG) |=  (MASK))
-
-
+#define GET_FIELD(REG, POS, WIDTH) (((REG) >> (POS)) & ((1U << (WIDTH)) - 1U))
+	
+	
 #endif //BIT_MATH_H_

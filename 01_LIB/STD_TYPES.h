@@ -1,26 +1,29 @@
 /*
  *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    STD_TYPES.h    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
- *  Author : Mohamed Aldremly
- *  Date   : 5/6/2026
- *  Layer  : LIB
+ *  Author  : Mohamed Aldreamly
+ *  Date    : MAY, 7 2026
+ *  Vertion : V02
+ *	Update	: SEP, 14 2026
+ *  Layer   : LIB
  *
- */ 
+ */  
 
 
 #ifndef STD_TYPES_H_
 #define STD_TYPES_H_
 
-typedef unsigned char           u8 ;
-typedef unsigned short int      u16;
-typedef unsigned long int       u32;
-typedef unsigned long long int  u64;
-typedef signed char	            s8 ;
-typedef signed short int        s16;
-typedef signed long int         s32;
-typedef signed long long int    s64;
-typedef float                   f32;
-typedef double                  f64;
+typedef unsigned char           uint8 ;
+typedef unsigned short int      uint16;
+typedef unsigned long int       uint32;
+typedef unsigned long long int  uint64;
+typedef signed char	            sint8 ;
+typedef signed short int        sint16;
+typedef signed long int         sint32;
+typedef signed long long int    sint64;
+typedef float                   float32;
+typedef double                  float64;
+
 typedef enum
 	{
 		fasle,
